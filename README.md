@@ -245,25 +245,32 @@ To calculate approximate hashrate or approximate time to find a solution, the fo
   
 ### Frequently Asked Questions
 
-Does 0xBitcoin have its own Blockchain?
+#### Does 0xBitcoin have its own Blockchain? 
+
 No. 0xBitcoin exists on the Ethereum Blockchain as a Smart Contract. This allows it to leverage a faster, more secure and modern crypto environment.
 
-Why are there times when a lot of mints get reverted?
+#### Why are there times when a lot of mints get reverted?
+
 The difficulty was too low compared to hashrate and so multiple valid solutions were submitted to the contract in a very short amount of time.  Only one can be accepted each round and so the others are reverted.
 
-How does pool mining work with 0xBitcoin?
+#### How does pool mining work with 0xBitcoin?
+
 Essentially the same way that pool mining works for classic Bitcoin, except 0xBitcoin pools must pay gas fees to the Ethereum network.  
 
-How often does difficulty update?
+#### How often does difficulty update?
+
 Every 1024 blocks.
 
-How does the difficulty update?
+#### How does the difficulty update?
+
 It increases up to 100% or down 50% with fractional changes in between in an effort to be approximately 60x slower than eth block rate, or roughly 10 minutes.
 
-Will there be a reward halvening event and when?
+#### Will there be a reward halvening event and when?
+
 At 10.5m tokens mined and when half the remaining has been mined then half of that remaining then half of that remaining, up to 40 iterations.
 
-Since 0xBitcoin is Proof of Work doesn't that mean it is bad for the environment?
+#### Since 0xBitcoin is Proof of Work doesn't that mean it is bad for the environment?
+
 As long as cryptocurrencies exists, mining will always exist.  Even though mining expends energy, it ultimately reduces corruption in society by providing humanity with decentralized and transparent transactional ledgers.  Therefore the idea similar to humanity having to pay for a gigantic decentralized accounting system or police network which is reducing the widespread financial corruption across the globe.  Just as we pay police officers and accountants for their service, we pay blockchain for its service in the form of energy and computation.
 
 ### Whitepaper Contributors
