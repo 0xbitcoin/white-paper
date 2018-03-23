@@ -276,6 +276,7 @@ As long as cryptocurrencies exists, mining will always exist.  Even though minin
 ### Whitepaper Contributors
 1. Infernal_toast (contract deployer)
 2. Jay Logelin (jlogelin@fas.harvard.edu)
+3. Michael Seiler (mgs33@cornell.edu)
 
 ### References
 
