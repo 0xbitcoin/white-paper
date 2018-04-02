@@ -1,6 +1,6 @@
 ## 0xBitcoin  
 
-#### ( Whitepaper Revision 1.0.0 )
+#### ( Whitepaper Revision 1.0.1 )
 
 #### 0xBitcoin: The Decentralized Bitcoin Token for Ethereum 
 -------------------------------
