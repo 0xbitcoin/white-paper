@@ -69,16 +69,15 @@ Da die Miner ihre Ethereum Adresse in der Proof of Work Lösung mit angeben müs
 
 ## Smart Contract
 
-Typically, ERC20 tokens will grant all tokens to the owner or will have an ICO which demands that amounts of Ether be sent to the owner for an initial offering of tokens.  Instead of granting tokens to the 'contract owner', all 0xBitcoin tokens are locked within the smart contract initially. These tokens are dispensed, 50 at a time, by calling the function 'mint' and using Proof of Work, similar to mining bitcoin classic. The 0xBitcoin smart contract is the first token to adhere to the ERC541 Draft Specification. As such the following Smart Contract methods are explicitly supported:
+ERC20 Tokens werden üblicherweise alle an den Ersteller oder durch ein ICO Modell ausgegeben, bei dem Ether im Tausch für Tokens an den Ersteller gesendet wird. Anstatt alle 0xBitcoin Tokens an den Ersteller auszustellen, werden diese anfänglich im Smart Contract festgesetzt. Durch das Abrufen der „mint()“ Funktion mit Proof of Work werden diese dann in Tranchen von 50 Stück, ähnlich wie beim klassischen Bitcoin verteilt. Der 0xBitcoin Smart Contract erfüllt als erstes Token die ERC541 Spezifikation, hierdurch werden folgende Smart Contract Methoden ausdrücklich unterstützt: 
 
 ## Token
 ### ERC-20 Interface
 #### name
 
-Returns the name of the token - e.g. `"0xBitcoin Token"`.
+Gibt den Namen des Tokens aus – z.B. `"0xBitcoin Token"`.
 
-OPTIONAL - This method can be used to improve usability,
-but interfaces and other contracts MUST NOT expect these values to be present.
+Diese Funktion ist optional, sie kann genutzt werden, um die Benutzerfreundlichkeit zu verbessern, ist aber nicht notwendig um mit Schnittstellen und anderen Smart Contracts zu interagieren.
 
 ``` js
 function name() constant returns (string name)
@@ -86,10 +85,9 @@ function name() constant returns (string name)
 
 #### symbol
 
-Returns the symbol of the token. e.g. `"0xBTC"`.
+Gibt die Abkürzung des Token Namens aus – z.B. `"0xBTC"`.
 
-OPTIONAL - This method can be used to improve usability,
-but interfaces and other contracts MUST NOT expect these values to be present.
+Diese Funktion ist optional, sie kann genutzt werden, um die Benutzerfreundlichkeit zu verbessern, ist aber nicht notwendig um mit Schnittstellen und anderen Smart Contracts zu interagieren.
 
 ``` js
 function symbol() constant returns (string symbol)
@@ -97,7 +95,7 @@ function symbol() constant returns (string symbol)
 
 #### totalSupply
 
-Returns the total token supply.
+Gibt die Gesamtmenge an Tokens aus.
 
 ``` js
 function totalSupply() constant returns (uint256 totalSupply)
@@ -105,7 +103,7 @@ function totalSupply() constant returns (uint256 totalSupply)
 
 #### balanceOf
 
-Returns the account balance of another account with address `_owner`.
+Gibt die Menge an Tokens an, die ein Account mit der Adresse `_owner` besitzt.
 
 ``` js
 function balanceOf(address _owner) constant returns (uint256 balance)
@@ -116,7 +114,8 @@ function balanceOf(address _owner) constant returns (uint256 balance)
 
 #### mint
 
-Returns a flag indicating a successful hash digest verification. In order to prevent MiTM attacks, it is recommended that the digest include a recent ethereum block hash and msg.sender's address. Once verified, the mint function calculates and delivers a mining reward to the sender and performs internal accounting operations on the contract's supply.
+Gibt ein Identifizierungssignal für eine erfolgreiche Hash Überprüfung aus. Um Man in the Middle Attacken zu verhindern, wird empfohlen das der Hash eines kürzlich zurückliegenden Ethereum Blocks sowie die Ethereum Adresse des Senders in den zu überprüfenden Hash eingebettet werden.
+Sobald die „mint()“ Funktion erfolgreich ausgeführt wird, berechnet diese die Menge der auszuschüttenden Tokens und führt interne Buchführungsoperationen bzgl des Vorrats an Tokens im Smart Contract aus.
 
 ``` js
 function mint(uint256 nonce, bytes32 challenge_digest) public returns (bool success)
@@ -124,7 +123,7 @@ function mint(uint256 nonce, bytes32 challenge_digest) public returns (bool succ
 
 ##### *Mint Event*
 
-Upon successful verification and reward the mint method dispatches a Mint Event indicating the reward address, the reward amount, the epoch count and newest challenge number.
+Nach der erfolgreichen Überprüfung und Ausschüttung erzeugt die mint Funktion ein sogenanntes Mint Event, bei dem die Adresse des Empfängers, die Menge an auszuzahlenden Tokens, Epochen Zählstand und neuste Aufgabennummer spezifiziert werden.
 
 ``` js
 event Mint(address indexed from, uint reward_amount, uint epochCount, bytes32 newChallengeNumber);
@@ -132,7 +131,7 @@ event Mint(address indexed from, uint reward_amount, uint epochCount, bytes32 ne
 
 #### getChallengeNumber
 
-Recent ethereum block hash, used to prevent pre-mining future blocks.
+Kurz zurückliegender Ethereum Block Hash, der genutzt wird, um vorraus-minen zu verhindern.
 
 ``` js
 function getChallengeNumber() public constant returns (bytes32) 
@@ -140,7 +139,7 @@ function getChallengeNumber() public constant returns (bytes32)
 
 #### getMiningDifficulty
 
-The number of digits that the digest of the PoW solution requires which typically auto adjusts during reward generation.Return the current reward amount. Depending on the algorithm, typically rewards are divided every reward era as tokens are mined to provide scarcity.
+Die Anzahl an Stellen die eine Proof of Work Lösungs-Überprüfung benötigt, diese gleicht sich üblicherweise automatisch während der „Reward“ (Belohnungs-/Ausschüttungs-) Erstellung an.
 
 
 ``` js
@@ -149,7 +148,7 @@ function getMiningDifficulty() public constant returns (uint)
 
 #### getMiningReward
 
-Return the current reward amount. Depending on the algorithm, typically rewards are divided every reward era as tokens are mined to provide scarcity.
+Gibt die momentane Ausschüttungsmenge aus, abhängig vom Algorithmus, üblicherweise werden die Ausschüttungsmengen in jeder Ära halbiert, um eine Verknappung zu erreichen.
 
 ``` js
 function getMiningReward() public constant returns (uint)
