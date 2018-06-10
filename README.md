@@ -253,35 +253,35 @@ To calculate approximate hashrate or approximate time to find a solution, the fo
 
 0xBitcoin is implemented as an Ethereum ERC20 token and so its success is largely dependent on the success of the Ethereum Network.  If Ethereum cannot scale using methods such as Plasma, Casper, and the Loom network, then 0xBitcoin will not be able to realize its full potential as the fastest and most effective decentralized currency in the world.   
   
-### Frequently Asked Questions
+### Häufig gestellte Fragen
 
-#### Does 0xBitcoin have its own Blockchain? 
+#### Besitzt 0xBitcoin eine eigene Blockchain? 
 
-No. 0xBitcoin exists on the Ethereum Blockchain as a Smart Contract. This allows it to leverage a faster, more secure and modern crypto environment.
+Nein. 0xBitcoin existiert als Smart Contract auf der Ethereum Blockchain und erlaubt es, eine schnellere, sicherere und moderne Crypto-Umgebung zu nutzen.
 
-#### Why are there times when a lot of mints get reverted?
+#### Warum gibt es Zeiten in denen viele Mints zurückgeleitet werden?
 
-The difficulty was too low compared to hashrate and so multiple valid solutions were submitted to the contract in a very short amount of time.  Only one can be accepted each round and so the others are reverted.
+Die Schwierigkeit der Proof of Work Aufgabe war zu niedrig, somit wurden mehrere Lösungen für dieselbe Aufgabe innerhalb kurzer Zeit an den Smart Contract geschickt. Nur eine von diesen Lösungen kann für jede Runde akzeptiert werden, die anderen werden somit zurückgeleitet.
 
-#### How does pool mining work with 0xBitcoin?
+#### Wie funktioniert Pool Mining mit 0xBitcoin?
 
-Essentially the same way that pool mining works for classic Bitcoin, except 0xBitcoin pools must pay gas fees to the Ethereum network.  
+Im Grunde genau so wie mit dem klassischen Bitcoin, nur müssen Pools für 0xBitcoin Transaktionsgebühren an das Ethereum Netzwerk zahlen.  
 
-#### How often does difficulty update?
+#### Wie oft wird die Schwierigkeit angepasst?
 
-Every 1024 blocks.
+Alle 1024 Blocks bzw Mints.
 
-#### How does the difficulty update?
+#### Wie wird die Schwierigkeit angepasst?
 
-It increases up to 100% or down 50% with fractional changes in between in an effort to be approximately 60x slower than eth block rate, or roughly 10 minutes.
+Die Schwierigkeitsanpassung erlaubt Sprünge von maximal 100 % nach oben und 50 % nach unten, Ziel ist es ca. 60 mal langsamer als die Ethereum Block-Rate zu sein bzw. 10 Minuten.
 
-#### Will there be a reward halvening event and when?
+#### Wird es eine Ausschüttungshalbierung geben und wenn ja, wann?
 
-At 10.5m tokens mined and when half the remaining has been mined then half of that remaining then half of that remaining, up to 40 iterations.
+Beginnend ab 10.5 Millionen Tokens, danach wenn die Hälfte der verbleibenden Tokens gemined wurden, danach wiederum nach der Hälfte der verbleibenden Tokens und so weiter, bis zu 40 Halbierungen.
 
-#### Since 0xBitcoin is Proof of Work doesn't that mean it is bad for the environment?
+#### Ist 0xBitcoin nicht schädlich für die Umwelt da es durch Proof of Work ausgeschüttet wird?
 
-As long as cryptocurrencies exists, mining will always exist.  Even though mining expends energy, it ultimately reduces corruption in society by providing humanity with decentralized and transparent transactional ledgers.  Therefore the idea similar to humanity having to pay for a gigantic decentralized accounting system or police network which is reducing the widespread financial corruption across the globe.  Just as we pay police officers and accountants for their service, we pay blockchain for its service in the form of energy and computation.
+Solange wie Cryptowährungen existieren, wird es Proof of Work mining geben. Auch wenn mining Energie verbraucht, reduziert es somit doch auch Korruption, in dem der Menschheit ein transparentes, dezentralisiertes Transaktionsbuch zur Verfügung gestellt wird. Der Gedanke dahinter ist, dass eine solche Form der dezentralisierten Buchhaltung, ähnlich wie eine Polizei, die weitverbreitete Korruption in den Finanzsektoren rund um den Globus reduziert. Genauso wie wir Polizei und Buchhalter entlohnen, bezahlen wir die Blockchain für ihren Service mit Energie und Rechenleistung.
 
 ### Whitepaper Contributors
 1. Infernal_toast (contract deployer)
