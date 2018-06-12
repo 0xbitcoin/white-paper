@@ -181,17 +181,8 @@ function checkMintSolution(uint256 nonce, bytes32 challenge_digest, bytes32 chal
 
 OPTINAL - Diese Methode kann genutzt werden, um die Anwendungsfreundlichkeit zu erhöhen, allerdings dürfen Schnittstellen und andere Verträge NICHT davon ausgehen, dass diese Werte präsent sein werden.
 
+
 ## Erzeugen neuer 0xBitcoins
-
-The 0xBitcoin Token was deployed to the Ethereum blockchain in February, 2018, with the following attributes:
-* No pre-mine
-* No ICO
-* 21,000,000 tokens total supply
-* Difficulty target auto-adjusts with PoW hashrate
-* Rewards decrease as more tokens are minted
-* ERC20 compatibility
-
-As such, the only way for a user to acquire 0xBitcoins is to mine them or purchase them from miners on decentralized exchanges. The mint function is responsible for verifying the validity of the hash solution, updating the contracts internal state and issuing new 0xBitcoins.
 
 Die ersten 0xBitcoin wurden im Februar 2018 im Ethereum Netzwerk erzeugt. Der Token weist folgende Eigenschaften auf:
 * kein pre mine
