@@ -157,31 +157,31 @@ Gibt die momentane Ausschüttungsmenge aus, abhängig vom Algorithmus, üblicher
 function getMiningReward() public constant returns (uint)
 ```
 
-### Mining Debug Operations
+### Mining Debug Operationen
 
 
 #### getMintDigest
 
-Returns a test digest using the same hashing scheme used when minting new tokens.
+Liefert ein Test Resultat welches dieselben Hash-Schemata wie der Prozess des mintings neuer Token nutzt.
 
 ``` js
 function getMintDigest(uint256 nonce, bytes32 challenge_digest, bytes32 challenge_number) public view returns (bytes32 digesttest)
 ```
-OPTIONAL - This method can be used to improve usability,
-but interfaces and other contracts MUST NOT expect these values to be present.
+
+OPTINAL - Diese Methode kann genutzt werden, um die Anwendungsfreundlichkeit zu erhöhen, allerdings dürfen Schnittstellen und andere Verträge NICHT davon ausgehen, dass diese Werte präsent sein werden.
 
 
 #### checkMintSolution
 
-Verifies a sample solution using the same scheme as the mint method.
+Verifiziert eine einfache Lösung anhand des minting Schemas.
 
 ``` js
 function checkMintSolution(uint256 nonce, bytes32 challenge_digest, bytes32 challenge_number, uint testTarget) public view returns (bool success) 
 ```
-OPTIONAL - This method can be used to improve usability,
-but interfaces and other contracts MUST NOT expect these values to be present.
 
-## Minting New 0xBitcoins
+OPTINAL - Diese Methode kann genutzt werden, um die Anwendungsfreundlichkeit zu erhöhen, allerdings dürfen Schnittstellen und andere Verträge NICHT davon ausgehen, dass diese Werte präsent sein werden.
+
+## Erzeugen neuer 0xBitcoins
 
 The 0xBitcoin Token was deployed to the Ethereum blockchain in February, 2018, with the following attributes:
 * No pre-mine
@@ -192,6 +192,16 @@ The 0xBitcoin Token was deployed to the Ethereum blockchain in February, 2018, w
 * ERC20 compatibility
 
 As such, the only way for a user to acquire 0xBitcoins is to mine them or purchase them from miners on decentralized exchanges. The mint function is responsible for verifying the validity of the hash solution, updating the contracts internal state and issuing new 0xBitcoins.
+
+Die ersten 0xBitcoin wurden im Februar 2018 im Ethereum Netzwerk erzeugt. Der Token weist folgende Eigenschaften auf:
+* kein pre mine
+* kein ICO
+* maximale Anzahl der Token auf 21.000.000 begrenzt
+* mining difficulty passt sich automatisch der Netzwerk Hashrate an
+* die Belohnungen für das mining reduzieren sich mit steigender Anzahl geminter Token
+* ERC20 Kompatibilität
+
+Demnach ist die einzige Möglichkeit in den Besitz von 0xBitcoin zu gelangen das mining oder der Erwerb von anderen Minern über Handelsplatformen. Die Funktion, die für das Erzeugen neuer 0xBitcoins verwendet wird, ist für das Verifizieren der Hash Lösung und aktualisieren des inneren Zustandes des smart contracts verantwortlich und gibt bei korrekten Lösungen neue 0xBitcoins aus.
 
 ``` js
 function mint(uint256 nonce, bytes32 challenge_digest) public returns (bool success) {   
@@ -225,15 +235,17 @@ function mint(uint256 nonce, bytes32 challenge_digest) public returns (bool succ
     return true;
 }
 ```
-*figure 1. 0xBitcoin Smart Contract mint() function*
+*Abb. 1. 0xBitcoin Smart Contract mint() Funktion*
 
-The mining reward is initially gathered and follows the same algorithm as Bitcoin classic. Essentially following the paradigm of a fully decentralized monetary system, whereby the tokens are created by the nodes of a peer to peer network. The 0xbitcoin algorithm defines how the token will be created and at what rate.
 
-As with Bitcoin, 0xBitcoins are generated every time a user discovers a new block by being the first to submit Proof of Work for each round. The rate of the block creation is adjusted every 1024 to aim for a relatively constant adjustment period equal to approximately 6 0xBitcoin blocks per hour. The number of 0xBitcoins generated per block is set to decrease logarithmically, having a 50% reduction every time half of the remaining supply has been mined.  This ensures that the number of 0xBitcoins in existence will never exceed 21 million. 
+Die Belohnung für das mining ist initial festgelegt und durch denselben Algorithmus wie der klassiche Bitcoin festgelegt. Es folgt dem Paradigma eines vollständig dezentralisierten monetären Systems. Während neue Tokens über die Knotenpunkte eines peer to peer Netzwerkes erzeugt werden, überwacht der 0xBitcoin Algorithmus wie, und in welcher Menge diese erschaffen werden. 
 
-A unique 'nonce' has to be passed into the mint function along with the hash solution digest in order for tokens to be dispensed. To find this special number, it is necessary to run a mining program. More specifically, the PoW includes a recent Ethereum block hash combined with the wallet sender's address in order to prevent man in the middle attacks when minting new coins. The challenge and nonce are validated in solidity using the keccak256 hashing algorithm to decipher the challenge's digest. Once the digest has been extracted, it is validated to match the expected challenge result and then check to ensure that it is smaller than the mining target difficulty.
+Wie auch Bitcoin, werden 0xBitcoin jedesmal erschaffen, wenn der Benutzer einen neuen Block findet. Er sendet hierbei als erster einen proof of work Beweis für die aktuelle Blockhöhe an den smart contract. Die mining Schwiergkeit wird alle 1024 Blöcke angepasst. Der smart contract ist so aufgebaut, dass er bestrebt ist die Schwierigkeit so lange verändern, bis sich die Frequenz für das Finden neuer Blöcke bei sechs Blöcken je Stunde einpendelt. Dabei nimmt die Anzahl der neu ausgegebenen 0xBitcoin logarithmisch ab - die Belohnung sinkt jedes Mal um 50%, sobald eine neue Era erreicht wird. Durch diese Funktion kann die maximale Anzahl von 0xBitcoin niemals 21 Millionen überschreiten.
+ 
+Damit neue 0xBitcoin erzeugt werden können, muss der Benutzer zusammen mit der Hash-Lösung einen einzigartigen 'nonce' übermitteln. Um diese Lösungen zu erhalten ist die Verwendung eines mining Programms notwendig. Um Angriffe durch zwischengeschaltete Parteien zu verhindern, kombiniert der proof of work Prozess den aktuelle Ethereum-Blockhash mit der wallet Adresse des Absenders. Mining Aufgabe und Hash Lösung werden mittels solidity geprüft und die Lösung über den keccak256 Algorithmus dechiffriert. Sobald eine Lösung gefunden wurde, wird geprüft, ob diese der erwarteten Mining Lösung entspricht und kleiner als die aktuelle Schwierigkeit ist.
 
-The mining reward is calculated based on the logarithmic halving algorithm making the 0xBitcoin token a reliably deflationary asset. The award is immediately assigned to the sender's wallet address and the ‘tokens minted count’ is incremented within the smart contract for any other software to monitor. Notably, the contract then validates that the tokens minted count is less than or equal to the maximum supply or the given halving era that transaction is taking place. Next, the contract records diagnostics reflecting reward address, amount and ether block number for the purpose of public transparency and for other software to monitor.
+Durch die logarithmische Reduktion der Belohnungen im Laufe der Zeit, ist 0cBitcoin eine verlässliche deflationäre Wertanlage. Die Erträge werden dem Absender der Lösung unverzüglich gutgeschrieben und die im Umlauf befindliche Menge von 0xBitcoin wird im smart contract entsprechend erhöht und kann dort von anderer Software bei Bedarf abgerufen werden. Zur Wahrung der Integrität prüft der smart contract ob die aktuelle Zahl in Umlauf befindlicher 0xBitcoin kleiner oder gleich der maximal möglichen Anzahl ist bzw. dass in der aktuellen Era nicht mehr Tokens erzeugt werden, als mathematisch erlaubt wäre. Darüber hinaus zeigt der smart contract die Adresse des letzen wallets, das eine Lösung gefunden hat, sowie die Ethereum-Blocknummer in welcher sie gefunden wurde und vermittelt somit Transparenz des Mining-Prozesses.
+
 
 ### Difficulty Calculation and Adjustment
 After every block is minted, the smart contract will determine if it is time to adjust the difficulty.  This occurs every 1024 mined blocks.  Just before this occurs, the contract increments the reward era if necessary - this is, if the tokens minted count has exceeded the maximum era supply which is calculated via a simple halving algorithm: 
