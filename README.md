@@ -247,27 +247,27 @@ Damit neue 0xBitcoin erzeugt werden können, muss der Benutzer zusammen mit der 
 Durch die logarithmische Reduktion der Belohnungen im Laufe der Zeit, ist 0cBitcoin eine verlässliche deflationäre Wertanlage. Die Erträge werden dem Absender der Lösung unverzüglich gutgeschrieben und die im Umlauf befindliche Menge von 0xBitcoin wird im smart contract entsprechend erhöht und kann dort von anderer Software bei Bedarf abgerufen werden. Zur Wahrung der Integrität prüft der smart contract ob die aktuelle Zahl in Umlauf befindlicher 0xBitcoin kleiner oder gleich der maximal möglichen Anzahl ist bzw. dass in der aktuellen Era nicht mehr Tokens erzeugt werden, als mathematisch erlaubt wäre. Darüber hinaus zeigt der smart contract die Adresse des letzen wallets, das eine Lösung gefunden hat, sowie die Ethereum-Blocknummer in welcher sie gefunden wurde und vermittelt somit Transparenz des Mining-Prozesses.
 
 
-### Difficulty Calculation and Adjustment
-After every block is minted, the smart contract will determine if it is time to adjust the difficulty.  This occurs every 1024 mined blocks.  Just before this occurs, the contract increments the reward era if necessary - this is, if the tokens minted count has exceeded the maximum era supply which is calculated via a simple halving algorithm: 
+### Schwierigkeitsberechnung und Anpassung
+Nach jedem Mint-Vorgang überprüft der Smart Contract, ob es an der Zeit ist die Schwierigkeit anzupassen, dies geschieht alle 1024 Mint-Vorgänge. Zuvor wird jedoch noch überprüft ob die gegenwärtige Ausschüttungsära ihr Ende erreicht hat, also die Menge an Tokens das Limit für die Ära überschritten hat, die Berechnung hierfür erfolgt durch einen einfachen Halbierungs-Alogrithmus: 
 
 max_era_supply = total_supply - (total_supply / (2 * (reward_era + 1)))
 
-This means that the first era supply is 10500000 tokens, the second era supply is 15750000 tokens, the third era supply is 18375000 tokens and so forth.   During the first era, the block reward for a mint() is 50 tokens.  During the second era, the reward is 25 tokens.  During the third era, the reward is 12.5 tokens and so forth.  There are forty eras total until the mining will halt.  This is expected to take about 100 years at which time 0xBitcoin can be used as a decentralized digital currency for Ethereum.  
+In der ersten Ära werden 10500000 Tokens ausgegeben, ein Mint-Vorgang liefert dabei 50 Tokens. In der zweiten Ära die bis zu einer Gesamtmenge von 15750000 Tokens verläuft, sind es noch 25 Tokens je Mint-Vorgang. In der dritten Ära werden nur noch 12.5 Tokens ausgeschüttet und immer so weiter, bis die letzte der 40 Ären abgeschlossen ist und somit auch die Ausschüttung durch das Mining. Der Vorgang wird im gesamten ca. 100 Jahre andauern und 0xBitcoin dann eine dezentralisierte Währung auf Ethereum darstellen.  
 
-The reward era is used to calculate the mining reward.  Next, the 0xBitcoin smart contract adjusts the difficulty by first determining how many Ethereum blocks had been mined since the last adjustment.  If less than 1024*60 Ethereum blocks had been mined, 0xBitcoin is being mined too quickly and the difficulty will increase.  This is accomplished by reducing the size of the ‘target’.  When the target is smaller, valid nonces for minting are more rare and are harder to find for future mining rounds.   Alternatively if 0xBitcoin is being mined too slowly the target will increase in value in order to make minting more easy to accomplish.  All difficulty targets are bound within minimum and maximum difficulties of 216 and 2234 respectively.
+Die Ausschüttungsära wird genutzt, um die Menge an auszugebenden Tokens zu berechnen. Danach passt der Smart Contract die Schwierigkeit an, indem er bestimmt wie viele Ethereum Blöcke seit der letzten Anpassung gemined wurden. Wenn weniger als 1024*60 Ethereum Blöcke gemined wurden, läuft der Mining Vorgang zu schnell ab, die Schwierigkeit wird sich erhöhen. Erreicht wird diese Anpassung in dem das „Ziel“ verkleinert wird, zulässige Lösungen für den Mint-Vorgang werden seltener und schwieriger zu finden. Auf umgekehrte weise verläuft die Anpassung falls die Schwierigkeit zu hoch ist, der Zielwert wird größer und somit steigt die Wahrscheinlichkeit eine Lösung finden. Alle Schwierigkeitsanpassungen bewegen sich in einem Rahmen von minimal 216 bis maximal 2234.
 
-### Calculating Mining Hashrate
+### Berechnung der Mining Hashrate
 
-To calculate approximate hashrate or approximate time to find a solution, the following equation can be used:
+Um eine geschätzte Hashrate bzw. Zeit pro Mint zu berechnen, kann die folgende Gleichung genutzt werden:
 
 	TimeToSolveBlock (seconds) = (difficulty * 2 ^ 22) / hashrate (hashes per second)
  
  
 
-### Risks and Challenges 
+### Risiken und Herausforderungen 
 
-0xBitcoin is implemented as an Ethereum ERC20 token and so its success is largely dependent on the success of the Ethereum Network.  If Ethereum cannot scale using methods such as Plasma, Casper, and the Loom network, then 0xBitcoin will not be able to realize its full potential as the fastest and most effective decentralized currency in the world.   
-  
+Da 0xBitcoin ein ERC20 Token ist, hängt sein Erfolg größtenteils von dem des Ethereum Netzwerks ab. Falls Ethereum nicht durch neue Methoden wie Plasma, Casper und das Loom Netzwerk skaliert, kann auch 0xBitcoin nicht sein volles Potenzial als schnellste und am stärksten dezentralisierte Währung der Welt erreichen.   
+
 ### Häufig gestellte Fragen
 
 #### Besitzt 0xBitcoin eine eigene Blockchain? 
