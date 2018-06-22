@@ -280,7 +280,7 @@ Alle 1024 Blocks bzw Mints.
 
 #### Wie wird die Schwierigkeit angepasst?
 
-Die Schwierigkeitsanpassung erlaubt Sprünge von maximal 100 % nach oben und 50 % nach unten, Ziel ist es ca. 60 mal langsamer als die Ethereum Block-Rate zu sein bzw. 10 Minuten.
+Die Schwierigkeitsanpassung erlaubt Sprünge von maximal 50 % nach oben und 50 % nach unten, Ziel ist es ca. 60 mal langsamer als die Ethereum Block-Rate zu sein bzw. 10 Minuten.
 
 #### Wird es eine Ausschüttungshalbierung geben und wenn ja, wann?
 
