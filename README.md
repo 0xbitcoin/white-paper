@@ -2,7 +2,7 @@
 
 #### ( Whitepaper Revision 1.0.1 )
 
-#### 0xBitcoin: The Decentralized Bitcoin Token for Ethereum 
+#### 0xBitcoin: Der dezentralisierte Bitcoin Token für Ethereum 
 -------------------------------
 
 ### Kurzfassung
@@ -294,7 +294,10 @@ Solange wie Cryptowährungen existieren, wird es Proof of Work mining geben. Auc
 1. Infernal_toast (contract deployer)
 2. Jay Logelin (jlogelin@fas.harvard.edu)
 
-### References
+### Übersetzung ins Deutsche
+1. VergiliusMar0
+2. Blub/0xAllTheThings
+### Quellenangabe
 
 Satoshi Nakamoto. Bitcoin: A Peer-to-Peer Electronic Cash System, 2009. http://www.bitcoin.org/bitcoin.pdf.
 
